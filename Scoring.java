@@ -2,50 +2,58 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Scoring {
-    //@SuppressWarnings("unlikely-arg-type")
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Sample Input:");
 
         ArrayList<Integer> arrlist = new ArrayList<>();
-        // int T = input.nextInt();
-        
-        while(true){
-            String line = input.nextLine().trim();
-            
 
-            if(line.isEmpty()){
-                break;
-            }
+        // Read N (number of integers in the list)
+        int N = input.nextInt();
 
-            try{
-                int n = Integer.parseInt(line);
-                if (n >= 1 && n <= 20) {
-                    arrlist.add(n);
-                } else {
-                    System.out.println("Number must be between 1 and 20. Please try again.");
+        // Read N integers
+        for (int i = 0; i < N; i++) {
+            int num = input.nextInt();
+            arrlist.add(num);
+        }
+
+        // Read T (target score)
+        int T = input.nextInt();
+
+        input.close();
+
+        // Convert ArrayList to array
+        int[] numbers = arrlist.stream().mapToInt(Integer::intValue).toArray();
+
+        // Calculate max score
+        int maxScore = calculateMaxScore(numbers, T);
+
+        // Output result
+        System.out.println(maxScore);
+    }
+
+    private static int calculateMaxScore(int[] numbers, int T) {
+        int N = numbers.length;
+        boolean[] possible = new boolean[T];
+        possible[1] = true; // Start with 1 point
+        int maxScore = 1;
+
+        for (int num : numbers) {
+            for (int score = T - 1; score >= 1; score--) {
+                if (possible[score]) {
+                    // Addition
+                    if (score + num < T) {
+                        possible[score + num] = true;
+                        maxScore = Math.max(maxScore, score + num);
+                    }
+                    // Multiplication
+                    if (score * num < T) {
+                        possible[score * num] = true;
+                        maxScore = Math.max(maxScore, score * num);
+                    }
                 }
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-            
-        } 
-        int T = 0;
-        boolean validT = false;
-        while (!validT) {
-            //System.out.println("Enter an additional number T:");
-            try {
-                T = Integer.parseInt(input.nextLine().trim());
-                validT = true;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input for T. Please enter an integer.");
             }
         }
 
-        System.out.println("Entered numbers: " + arrlist);
-        System.out.println("Additional number T: " + T);
-        
-        input.close();
+        return maxScore;
     }
 }
