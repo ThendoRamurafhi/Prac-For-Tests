@@ -57,3 +57,100 @@ public class Scoring {
         return maxScore;
     }
 }
+/*    public static void swapRows(double[][] matrix, int row1, int row2) {
+        if (row1 == row2) {
+            return; // No need to swap if the rows are the same
+        }
+
+        double[] temp = matrix[row1];
+        matrix[row1] = matrix[row2];
+        matrix[row2] = temp;
+    }
+
+    public static void main(String[] args) {
+        double[][] matrix = {
+            {1.0, 2.0, 3.0},
+            {4.0, 5.0, 6.0},
+            {7.0, 8.0, 9.0}
+        };
+
+        System.out.println("Original Matrix:");
+        printMatrix(matrix);
+
+        // Swap row 0 and row 2
+        swapRows(matrix, 0, 2);
+
+        System.out.println("Matrix after swapping row 0 and row 2:");
+        printMatrix(matrix);
+    }
+
+    /**
+     * Prints the given 2D matrix.
+     *
+     * @param matrix The 2D matrix to print.
+     */
+   /* public static void printMatrix(double[][] matrix) {
+        for (double[] row : matrix) {
+            for (double value : row) {
+                System.out.print(value + " ");
+            }
+            System.out.println();
+        }
+    }
+         public static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        if (n <= 3) {
+            return true;
+        }
+        if (n % 2 == 0 || n % 3 == 0) {
+            return false;
+        }
+        for (int i = 5; i * i <= n; i += 6) {
+            if (n % i == 0 || n % (i + 2) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int number = 29;
+        if (isPrime(number)) {
+            System.out.println(number + " is a prime number.");
+        } else {
+            System.out.println(number + " is not a prime number.");
+        }
+    }
+}
+    
+     public static boolean[] sieveOfEratosthenes(int limit) {
+        boolean[] isPrime = new boolean[limit + 1];
+        Arrays.fill(isPrime, true);
+        isPrime[0] = false;
+        isPrime[1] = false;
+
+        for (int i = 2; i * i <= limit; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= limit; j += i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+        return isPrime;
+    }
+
+    public static void main(String[] args) {
+        int limit = 50;
+        boolean[] primes = sieveOfEratosthenes(limit);
+
+        System.out.println("Prime numbers up to " + limit + ":");
+        for (int i = 2; i <= limit; i++) {
+            if (primes[i]) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+}
+ */
